@@ -4,12 +4,15 @@
 #include <chrono>
 #include <vector>
 #include <utility>
+#include "HashMap.hpp"
+
+template <typename iterator>
 
 int main () {
 	using namespace std;
 	using namespace std::chrono;
 	vector<pair<string, size_t>> mots;
-	ifstream input = ifstream("/users/Etu9/28711949/git/PSCR-TME/TME2/WarAndPeace.txt");
+	ifstream input = ifstream("/Users/ly/Desktop/PSCR/git/PSCR-TME/TME2/WarAndPeace.txt");
 
 	auto start = steady_clock::now();
 	cout << "Parsing War and Peace" << endl;
@@ -35,14 +38,20 @@ int main () {
 				break;
 			}
 		}
-		
 		if(isinlist == 0){
-			pair<string, size_t> tmp;
-			tmp.first = word;
-			tmp.second = 1;
-			mots.push_back(tmp);
+			mots.emplace_back(word, 1);
+			motsz++;
+		}else{
+			isinlist = 0;
 		}
-		isinlist = 0;
+		/*
+		pair<string, size_t> tmp;
+		tmp.first = word;
+		tmp.second = 1;
+		mots.push_back(tmp);
+		*/
+		
+		
 		
 		// word est maintenant "tout propre"
 		/*
@@ -51,10 +60,30 @@ int main () {
 			cout << mots.size() << ": "<< mots.at(mots.size()-1).first << endl;
 		//nombre_lu++;
 		*/
-		motsz = mots.size();
-		for(size_t i = 0; i < mots.size(); ++i){
-    		cout << mots.at(i).first << " : " << mots.at(i).second <<endl; 
+	}
+	size_t war_found = 0;
+	size_t peace_found = 0;
+	size_t toto_found = 0;
+	for(size_t i = 0; i < motsz; ++i){
+		if(mots.at(i).first == "war"){
+			cout << "Found a total of "<< mots.at(i).second << " word <war>" << endl;
+			war_found++;
+		}else if(mots.at(i).first == "peace"){
+			cout << "Found a total of "<< mots.at(i).second << " word <peace>" << endl;
+			peace_found++;
+		}else if(mots.at(i).first == "toto"){
+			cout << "Found a total of "<< mots.at(i).second << "word <toto>" << endl;
+			toto_found++;
 		}
+	}
+	if(war_found == 0){
+		cout << "Didnt find word war" << endl;
+	}
+	if(peace_found == 0){
+		cout << "Didnt find word peace" << endl;
+	}
+	if(toto_found == 0){
+		cout << "Didnt find word toto" << endl;
 	}
 	input.close();
 
