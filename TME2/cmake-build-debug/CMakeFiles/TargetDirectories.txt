@@ -1,0 +1,3 @@
+/Users/ly/Desktop/PSCR/git/PSCR-TME/TME2/cmake-build-debug/CMakeFiles/TME2.dir
+/Users/ly/Desktop/PSCR/git/PSCR-TME/TME2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ly/Desktop/PSCR/git/PSCR-TME/TME2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

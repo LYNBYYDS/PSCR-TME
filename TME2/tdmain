@@ -1,0 +1,17 @@
+#include "String.hpp"
+
+using namespace pr;
+
+int main(){
+    String abc = "abc";
+{
+String bcd(abc);
+}
+
+std::cout << abc << std::endl;
+
+String def = "def";
+def = abc;
+
+std::cout << abc << " et " << def << std::endl;
+}
