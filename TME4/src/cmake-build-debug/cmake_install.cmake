@@ -1,4 +1,4 @@
-# Install script for directory: /Users/ly/Desktop/src
+# Install script for directory: /Users/ly/Desktop/PSCR/git/PSCR-TME/TME4/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/ly/Desktop/src/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ly/Desktop/PSCR/git/PSCR-TME/TME4/src/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
