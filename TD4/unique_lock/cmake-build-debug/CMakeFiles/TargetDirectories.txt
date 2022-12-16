@@ -1,0 +1,3 @@
+/Users/ly/Desktop/PSCR/TD4/unique_lock/cmake-build-debug/CMakeFiles/unique_lock.dir
+/Users/ly/Desktop/PSCR/TD4/unique_lock/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ly/Desktop/PSCR/TD4/unique_lock/cmake-build-debug/CMakeFiles/rebuild_cache.dir

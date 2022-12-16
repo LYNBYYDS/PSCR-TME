@@ -1,5 +1,4 @@
-#ifndef SRC_QUEUE_H_
-#define SRC_QUEUE_H_
+#pragma once
 
 #include <cstdlib>
 #include <mutex>
@@ -29,53 +28,69 @@ public:
 		tab = new T*[size];
 		memset(tab, 0, size * sizeof(T*));
 	}
+
 	size_t size() const {
 		std::unique_lock<std::mutex> lg(m);
 		return sz;
 	}
+
     setBlocking(){
         block = true;
     }
+
+
 	T* pop() {
 		std::unique_lock<std::mutex> lg(m);
 		while (empty() && block) {
 			cv.wait(lg);
-            //return nullptr;
 		}
-        if (empty() && !block){
+        if (empty()){
             return nullptr;
         }
-        cv.notify_all();
+        if (full()){
+            cv.notify_all();
+        }
 		auto ret = tab[begin];
 		tab[begin] = nullptr;
 		sz--;
 		begin = (begin + 1) % allocsize;
 		return ret;
 	}
+
 	bool push(T* elt) {
 		std::unique_lock<std::mutex> lg(m);
-		while (full() && block) {
-			cv.wait(lg);
-            //return false;
+		if (full()) {
+			return false;
 		}
-        if(full() && !block){
-            return false;
-        }
-        cv.notify_all();
 		tab[(begin + sz) % allocsize] = elt;
 		sz++;
 		return true;
 	}
+
+	bool push(T* elt) {
+		std::unique_lock<std::mutex> lg(m);
+		while (full() && block) {
+			cv.wait(lg);
+		}
+		if (empty()) {
+            cv.notify_all();
+        }
+		tab[(begin + sz) % allocsize] = elt;
+		sz++;
+		return true;
+	}
+
+
+
 	~Queue() {
 		// ?? lock a priori inutile, ne pas detruire si on travaille encore avec
+
 		for (size_t i = 0; i < sz; i++) {
 			auto ind = (begin + i) % allocsize;
 			delete tab[ind];
 		}
 		delete[] tab;
 	}
+
 };
 
-}
-
-#endif /* SRC_QUEUE_H_ */

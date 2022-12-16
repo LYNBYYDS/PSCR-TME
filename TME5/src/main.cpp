@@ -1,4 +1,6 @@
 #include "Vec3D.h"
+#include "Pool.h"
+#include "Barrier.h"
 #include "Rayon.h"
 #include "Scene.h"
 #include <iostream>
@@ -128,6 +130,10 @@ int main () {
 	// pour chaque pixel, calculer sa couleur
 	for (int x =0 ; x < scene.getWidth() ; x++) {
 		for (int  y = 0 ; y < scene.getHeight() ; y++) {
+
+            // pool.addJob
+
+
 			// le point de l'ecran par lequel passe ce rayon
 			auto & screenPoint = screen[y][x];
 			// le rayon a inspecter
